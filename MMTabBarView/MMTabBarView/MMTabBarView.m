@@ -254,7 +254,7 @@ static NSMutableDictionary<NSString*, Class <MMTabStyle>> *registeredStyleClasse
 #pragma mark -
 #pragma mark Characteristics
 
-+ (NSBundle *)bundle;
++ (NSBundle *)bundle
 {
 	static NSBundle *bundle = nil;
 	if (!bundle) {

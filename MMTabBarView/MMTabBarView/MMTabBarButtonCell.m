@@ -1037,9 +1037,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 inline static bool useShadow(NSView* const inView) {
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 101400
 	if (@available(macOS 10.14, *)) {
 		return ![[inView.effectiveAppearance bestMatchFromAppearancesWithNames:@[NSAppearanceNameAqua, NSAppearanceNameDarkAqua]] isEqualToString:NSAppearanceNameDarkAqua];
 	}
+#endif
 	return true;
 }
 
