@@ -1,14 +1,28 @@
 name: Build and analyse
 
-on: pull_request
+on:
+  pull_request:
+    paths:
+      - .github/workflows/*
+      - Configurations/*
+      - MMTabBarView/**
+      - Package.swift
 
 jobs:
   build:
     strategy:
       matrix:
-        os: [macos-12, macos-13, macos-14]
-    name: Build on ${{ matrix.os }}
+        include:
+          - os: macos-14
+            xcode: Xcode 15
+            developer-dir: /Applications/Xcode_15.4.app/Contents/Developer
+          - os: macos-15
+            xcode: Xcode 16
+            developer-dir: /Applications/Xcode_16.4.app/Contents/Developer
+    name: Build with ${{ matrix.xcode }}
     runs-on: ${{ matrix.os }}
+    env:
+      DEVELOPER_DIR: ${{ matrix.developer-dir }}
     timeout-minutes: 15
 
     steps:
