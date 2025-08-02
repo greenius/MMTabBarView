@@ -176,7 +176,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateAddButton:(MMRolloverButton *)aButton ofTabBarView:(MMTabBarView *)tabBarView {
     if (@available(macos 10.14, *)) {
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 140000
+        aButton.bezelStyle = NSBezelStyleFlexiblePush;
+#else
         aButton.bezelStyle = NSBezelStyleRegularSquare;
+#endif
     } else {
         aButton.bordered = YES;
     }
@@ -216,7 +220,11 @@ NS_ASSUME_NONNULL_BEGIN
     closeButton.title=@"";
     closeButton.imagePosition = NSImageOnly;
     closeButton.rolloverButtonType = MMRolloverActionButton;
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 140000
+    closeButton.bezelStyle = NSBezelStyleSmallSquare;
+#else
     closeButton.bezelStyle = NSBezelStyleShadowlessSquare;
+#endif
 
     return closeButton;
 

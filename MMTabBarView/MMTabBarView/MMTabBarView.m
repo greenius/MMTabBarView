@@ -2683,12 +2683,36 @@ static NSMutableDictionary<NSString*, Class <MMTabStyle>> *registeredStyleClasse
 - (NSCursor *)resizingMouseCursor {
 
     if (NSWidth(self.frame) <= self.buttonMinWidth) {
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 150000
+        if (@available(macOS 15, *)) {
+            return [NSCursor columnResizeCursorInDirections:NSHorizontalDirectionsRight];
+        } else {
+            return NSCursor.resizeRightCursor;
+        }
+#else
         return NSCursor.resizeRightCursor;
+#endif
     }
     else if (NSWidth(self.frame) >= self.buttonMaxWidth)
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 150000
+        if (@available(macOS 15, *)) {
+            return [NSCursor columnResizeCursorInDirections:NSHorizontalDirectionsLeft];
+        } else {
+            return NSCursor.resizeLeftCursor;
+        }
+#else
         return NSCursor.resizeLeftCursor;
+#endif
     else  {
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 150000
+        if (@available(macOS 15, *)) {
+            return NSCursor.columnResizeCursor;
+        } else {
+            return NSCursor.resizeLeftRightCursor;
+        }
+#else
         return NSCursor.resizeLeftRightCursor;
+#endif
     }
 }
 
@@ -2796,7 +2820,11 @@ StaticImage(AquaTabNewRollover)
     [_addTabButton setImagePosition:NSImageOnly];
     [_addTabButton setRolloverButtonType:MMRolloverActionButton];
     [_addTabButton setBordered:NO];
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 140000
+    [_addTabButton setBezelStyle:NSBezelStyleSmallSquare];
+#else
     [_addTabButton setBezelStyle:NSBezelStyleShadowlessSquare];
+#endif
     
     if (_style && [_style respondsToSelector:@selector(updateAddButton:ofTabBarView:)])
         [_style updateAddButton:_addTabButton ofTabBarView:self];
