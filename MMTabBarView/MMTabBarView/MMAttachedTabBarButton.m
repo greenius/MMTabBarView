@@ -16,6 +16,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define MIDDLE_MOUSE_BUTTON_NUMBER 2
+
 @interface MMAttachedTabBarButton ()
 @end
 
@@ -167,6 +169,19 @@ NS_ASSUME_NONNULL_BEGIN
             [self setState:NSControlStateValueOn];
             [self sendAction:self.action to:self.target];
         }
+    }
+}
+
+- (void)otherMouseUp:(NSEvent *)theEvent {
+
+    if (theEvent.buttonNumber != MIDDLE_MOUSE_BUTTON_NUMBER) {
+        [super otherMouseUp:theEvent];
+        return;
+    }
+
+    if (!self.suppressCloseButton) {
+        NSButton *closeButton = self.closeButton;
+        [closeButton sendAction:closeButton.action to:closeButton.target];
     }
 }
 
