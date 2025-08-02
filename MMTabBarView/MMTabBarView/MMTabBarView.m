@@ -58,7 +58,7 @@ CGFloat noIntrinsicMetric(void) {
         return NSViewNoIntrinsicMetric;
     }
     else {
-        return NSViewNoIntrinsicMetric;
+        return NSViewNoInstrinsicMetric;
     }
 }
 
