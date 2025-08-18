@@ -406,6 +406,9 @@ NS_ASSUME_NONNULL_BEGIN
 		  alpha:1.0] set];
 		NSRectFill(rect);
 		break;
+
+	default:
+		break;
 	}
 
 	//Draw the border and shadow around the tab bar itself
@@ -473,6 +476,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 		break;
 	}
+
+	default:
+		break;
 	}
 
 	[NSGraphicsContext restoreGraphicsState];

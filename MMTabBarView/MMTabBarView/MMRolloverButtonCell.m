@@ -59,6 +59,8 @@ NS_ASSUME_NONNULL_BEGIN
             break;
         case MMRolloverSwitchButton:
             break;
+        default:
+            break;
     }
     
     [(NSControl *)self.controlView updateCell:self];

@@ -37,7 +37,11 @@ StaticImage(overflowImagePressed)
     
         _isAnimating = NO;
     
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 140000
+		[self setBezelStyle:NSBezelStyleFlexiblePush];
+#else
 		[self setBezelStyle:NSBezelStyleRegularSquare];
+#endif
 		[self setBordered:NO];
 		[self setTitle:@""];
 		[self setPreferredEdge:NSMaxYEdge];

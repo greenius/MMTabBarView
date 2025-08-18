@@ -898,7 +898,11 @@ NS_ASSUME_NONNULL_BEGIN
     [closeButton setImagePosition:NSImageOnly];
     [closeButton setRolloverButtonType:MMRolloverActionButton];
     [closeButton setBordered:NO];
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 140000
+    [closeButton setBezelStyle:NSBezelStyleSmallSquare];
+#else
     [closeButton setBezelStyle:NSBezelStyleShadowlessSquare];
+#endif
 
     return closeButton;
 }
