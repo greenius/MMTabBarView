@@ -16,6 +16,7 @@ We currently try to limit widening of divergences with [Michael Monscheuer's ver
 - we add a delegate method `-tabView:selectOnClosingTabViewItem:` for choice of next tab to be selected on closing a tab
 - we add a method `-closeTabViewItem:` for closing a tab view item, with due execution of all delegate methods
 - we add support of Swift Packet Manager (Cocoapod and Carthage remain supported)
+- tabs can be closed by clicking the middle button on the mouse
 
 Note that to limit risks of confusion with the original version, we use a `v/x.x.x` scheme for version numbering.  
 Ex: our `v/1.4.7` can be compared to Mimo's `v1.4.1`
